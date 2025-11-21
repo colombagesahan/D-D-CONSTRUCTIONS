@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>D & D CONSTRUCTIONS - Luxury Interior Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #A08A66; /* Gold/Bronze accent */
+            --secondary-color: #2C3E50; /* Deep Blue/Charcoal */
+            --text-color-light: #F0F0F0;
+            --text-color-dark: #333333;
+            --bg-dark: #1A1A1A;
+            --bg-light: #FFFFFF;
+            --header-height: 72px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color-dark);
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+        }
+
+        h1,h2,h3,h4,h5,h6 {
+            font-family: 'Playfair Display', serif;
+            color: var(--secondary-color);
+            margin-bottom: 0.8em;
+        }
+
+        .container { max-width:1200px; margin:0 auto; padding:0 20px; }
+
+        /* Header */
+        header {
+            background-color: var(--bg-dark);
+            color: var(--text-color-light);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            transition: background-color 0.3s ease, transform 300ms ease-in-out;
+        }
+        header.scrolled { background-color: rgba(26,26,26,0.9); }
+        header .container { display:flex; justify-content:space-between; align-items:center; }
+
+        .logo { font-family:'Playfair Display', serif; font-size:1.8em; font-weight:bold; color:var(--primary-color); text-decoration:none; letter-spacing:1px; animation: fadeInDown 1s ease-out; }
+
+        nav ul { list-style:none; display:flex; }
+        nav ul li { margin-left:30px; }
+        nav ul li a {
+            color: var(--text-color-light);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1.1em;
+            transition: color 0.3s ease, transform 0.2s ease;
+            position: relative;
+            animation: fadeInRight 1s ease-out;
+        }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        nav ul li a:hover::after { width:100%; left:0; background:var(--primary-color); }
+        nav ul li a:hover { color:var(--primary-color); transform: translateY(-2px); }
+
+        .hamburger { display:none; flex-direction:column; cursor:pointer; animation: fadeInRight 1s ease-out; }
+        .hamburger .bar { width:25px; height:3px; background-color:var(--text-color-light); margin:4px 0; transition:0.4s; }
+
+        /* Hero (explicitly visible immediately) */
+        .hero {
+            position: relative;
+            color: var(--text-color-light);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+            overflow:hidden;
+            padding-top: calc(var(--header-height));
+            min-height: calc(100vh - var(--header-height));
+        }
+
+        .hero-background {
+            position:absolute; top:0; left:0; width:100%; height:100%;
+            background-size:cover; background-position:center;
+            transition: background-image 1.5s ease-in-out, opacity 1.5s ease-in-out;
+            opacity:0; z-index:1;
+        }
+        .hero-background.active { opacity:1; }
+
+        .hero-overlay { position:absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); z-index:2; }
+        .hero-content { position:relative; z-index:3; max-width:900px; padding:20px; }
+        .hero h1 { font-size:4.5em; margin-bottom:20px; color:var(--text-color-light); text-shadow:2px 2px 8px rgba(0,0,0,0.7); animation:fadeInUp 1s ease-out; }
+        .hero p { font-size:1.6em; margin-bottom:40px; color:var(--text-color-light); text-shadow:1px 1px 6px rgba(0,0,0,0.6); animation:fadeInUp 1.2s ease-out; }
+
+        .btn {
+            display:inline-block; background-color:var(--primary-color); color:var(--bg-dark);
+            padding:15px 35px; text-decoration:none; border-radius:5px; font-weight:700; font-size:1.1em;
+            transition:background-color 0.3s ease, transform 0.2s ease; box-shadow:0 4px 15px rgba(0,0,0,0.3);
+            animation: zoomIn 1.5s ease-out;
+        }
+        .btn:hover { background-color:#B5A07F; transform: translateY(-3px); box-shadow:0 6px 20px rgba(0,0,0,0.4); }
+
+        /* Sections (not hero) use animation */
+        section:not(.hero) {
+            padding: 80px 0;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            scroll-margin-top: calc(var(--header-height) + 16px);
+        }
+        section:not(.hero).visible { opacity:1; transform: translateY(0); }
+
+        section:nth-of-type(odd) { background-color: var(--bg-light); }
+        section:nth-of-type(even) { background-color: #f8f8f8; }
+
+        .section-title {
+            color: var(--secondary-color); margin-bottom:60px; position:relative;
+            display:inline-block; padding-bottom:10px; font-size:3em;
+        }
+        .section-title::after { content:''; position:absolute; left:50%; bottom:0; transform:translateX(-50%); width:80px; height:3px; background-color:var(--primary-color); }
+
+        /* About */
+        #about .container { display:flex; align-items:center; gap:50px; text-align:left;margin: 0; }
+        #about .about-img {
+            flex: 1;
+            min-width: 100%; /* Make it take full width */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            animation: zoomIn 1s ease-out;
+            position: relative;
+            margin: 0; /* Remove blank space */
+        }
+        #about .about-img img { width:100%; height:auto; display:block; transition:transform 0.5s ease; }
+        #about .about-img img:hover { transform:scale(1.05); }
+
+        .about-words-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em; /* Increased font size */
+            font-weight: bold;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+            padding: 20px;
+            box-sizing: border-box;
+            pointer-events: none; /* Allows clicks to pass through to the image if needed */
+        }
+
+        .about-word {
+            opacity: 0;
+            transform: translateY(20px) scale(0.8); /* Initial smaller scale */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            margin: 20px 0; /* Add some spacing between words */
+            text-align: center;
+            width: 100%; /* Ensure words take full width for centering */
+        }
+        .about-word.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1); /* Full scale */
+        }
+
+        #about .about-content { flex:2; }
+        #about .about-content h2 { text-align:center; margin-bottom:20px; }
+
+        /* Services */
+        .services-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap:40px; margin-top:50px; }
+        .service-item {
+            background-color:var(--bg-light); padding:30px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; text-align:center; overflow:hidden; position:relative; min-height:1px;
+        }
+        .service-item::before { content:''; position:absolute; top:0; left:0; width:100%; height:100%; background:linear-gradient(45deg, rgba(160,138,102,0.1), rgba(44,62,80,0.1)); opacity:0; transition:opacity 0.3s ease; z-index:1; }
+        .service-item:hover::before { opacity:1; }
+        .service-item i { font-size:3em; color:var(--primary-color); margin-bottom:20px; transition:transform 0.3s ease; position:relative; z-index:2; }
+        .service-item:hover i { transform:scale(1.1); }
+        .service-item h3 { color:var(--secondary-color); margin-bottom:15px; position:relative; z-index:2; }
+        .service-item p { color:var(--text-color-dark); position:relative; z-index:2; }
+
+        /* Gallery */
+        .gallery-nav { margin-bottom:40px; }
+        .gallery-nav button { background:none; border:none; color:var(--secondary-color); font-size:1.1em; font-weight:500; margin:0 15px; cursor:pointer; padding-bottom:5px; position:relative; transition:color 0.3s ease; }
+        .gallery-nav button::after { content:''; position:absolute; width:0; height:2px; display:block; margin-top:5px; left:50%; transform:translateX(-50%); background:var(--primary-color); transition:width 0.3s ease; }
+        .gallery-nav button.active, .gallery-nav button:hover { color:var(--primary-color); }
+        .gallery-nav button.active::after, .gallery-nav button:hover::after { width:100%; }
+
+        .gallery-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px; margin-top:30px; }
+        .gallery-item { overflow:hidden; border-radius:8px; box-shadow:0 4px 15px rgba(0,0,0,0.1); position:relative; cursor:zoom-in; }
+        .gallery-item img { width:100%; height:250px; object-fit:cover; display:block; transition:transform 0.4s ease; }
+        .gallery-item:hover img { transform:scale(1.08); }
+        .gallery-item-overlay { position:absolute; top:0; left:0; width:100%; height:100%; background: rgba(44, 62, 80, 0.7); color:var(--text-color-light); display:flex; flex-direction:column; justify-content:center; align-items:center; opacity:0; transition:opacity 0.3s ease; }
+        .gallery-item:hover .gallery-item-overlay { opacity:1; }
+        .gallery-item-overlay h4 { color:var(--text-color-light); margin-bottom:10px; font-size:1.3em; }
+        .gallery-item-overlay p { font-size:0.9em; text-align:center; padding:0 15px; }
+
+        /* Video */
+        .video-gallery-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap:30px; margin-top:50px; }
+        .video-item { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.1); transition:transform 0.3s ease; }
+        .video-item:hover { transform:translateY(-5px); }
+        .video-item iframe, .video-item video { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Testimonials: updated structure (.testimonial-track) */
+        #testimonials { background-color: var(--secondary-color); color: var(--text-color-light); }
+        #testimonials .section-title { color: var(--text-color-light); }
+
+        .testimonial-carousel { overflow: hidden; position: relative; max-width: 900px; margin: 0 auto; }
+        .testimonial-track {
+            display: flex;
+            width: 100%;
+            transition: transform 0.8s ease-in-out;
+        }
+        .testimonial-slide {
+            flex: 0 0 100%;
+            box-sizing: border-box;
+            text-align: center;
+            padding: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .testimonial-slide p { font-size: 1.3em; font-style: italic; margin-bottom: 20px; max-width:700px; }
+        .testimonial-author { font-weight: bold; font-size:1.1em; color: var(--primary-color); }
+        .carousel-controls { margin-top: 30px; text-align:center; }
+        .carousel-controls button { background-color:var(--primary-color); color:var(--bg-dark); border:none; padding:10px 15px; margin:0 10px; border-radius:5px; cursor:pointer; font-size:1.2em; transition:background-color 0.3s ease; }
+        .carousel-controls button:hover { background-color:#B5A07F; }
+
+        /* Contact */
+        #contact { background-color: var(--bg-light); }
+        .contact-content { display:flex; gap:50px; text-align:left; margin-top:50px; }
+        .contact-info, .contact-form-container { flex:1; }
+        .contact-info h3 { color: var(--secondary-color); margin-bottom:20px; }
+        .contact-info p { margin-bottom:10px; align-items:center; gap:10px; }
+        .contact-info i { color: var(--primary-color); font-size:1.2em; }
+        .social-links { margin-top:20px; }
+        .social-links a { color: var(--secondary-color); font-size:2em; margin-right:20px; transition:color 0.3s ease; }
+        .social-links a:hover { color: var(--primary-color); }
+        .contact-form-container { background-color:#f0f0f0; padding:30px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.08); }
+        .contact-form-container h3 { text-align:center; margin-bottom:30px; }
+        .contact-form label { display:block; margin-bottom:8px; font-weight:500; }
+        .contact-form input, .contact-form textarea { width:100%; padding:12px; margin-bottom:20px; border:1px solid #ddd; border-radius:5px; font-size:1em; font-family:'Montserrat',sans-serif; transition:border-color 0.3s ease; }
+        .contact-form input:focus, .contact-form textarea:focus { border-color:var(--primary-color); outline:none; box-shadow:0 0 5px rgba(160,138,102,0.5); }
+        .contact-form button { width:100%; border:none; padding:15px; font-size:1.1em; cursor:pointer; box-shadow:0 4px 15px rgba(0,0,0,0.2); }
+
+        /* Footer */
+        footer { background-color:var(--bg-dark); color:var(--text-color-light); text-align:center; padding:40px 0; font-size:0.9em; }
+        footer .container { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; text-align:left; }
+        footer .footer-col { flex:1; min-width:250px; margin-bottom:30px; padding:0 20px; }
+        footer .footer-col h4 { color:var(--primary-color); margin-bottom:20px; position:relative; padding-bottom:8px; }
+        footer .footer-col h4::after { content:''; position:absolute; left:0; bottom:0; width:50px; height:2px; background-color:var(--primary-color); }
+        footer .footer-col ul { list-style:none; }
+        footer .footer-col ul li { margin-bottom:10px; }
+        footer .footer-col ul li a { color:var(--text-color-light); text-decoration:none; transition:color 0.3s ease; }
+        footer .footer-col ul li a:hover { color:var(--primary-color); }
+        footer .footer-col p { margin-bottom:10px; }
+        .footer-bottom { width:100%; text-align:center; margin-top:30px; border-top:1px solid rgba(255,255,255,0.1); padding-top:20px; }
+
+        /* WhatsApp */
+        .whatsapp-button { position:fixed; bottom:30px; right:30px; background-color:#25D366; color:white; width:60px; height:60px; border-radius:50%; display:flex; justify-content:center; align-items:center; font-size:2.2em; box-shadow:0 4px 15px rgba(0,0,0,0.3); z-index:1001; transition:transform 0.3s ease, background-color 0.3s ease; text-decoration:none; }
+        .whatsapp-button:hover { background-color:#1DA851; transform:scale(1.1); }
+
+        .site-visit-button { display:inline-block; background-color:var(--secondary-color); color:var(--text-color-light); padding:15px 30px; text-decoration:none; border-radius:5px; font-weight:700; font-size:1.1em; transition:background-color 0.3s ease, transform 0.2s ease; box-shadow:0 4px 15px rgba(0,0,0,0.3); margin-top:30px; }
+        .site-visit-button:hover { background-color:#34495e; transform:translateY(-3px); box-shadow:0 6px 20px rgba(0,0,0,0.4); }
+
+        .modal { display:none; position:fixed; z-index:1002; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.6); padding-top:60px; }
+        .modal-content { background-color:var(--bg-light); margin:5% auto; padding:30px; border-radius:10px; width:90%; max-width:500px; box-shadow:0 5px 20px rgba(0,0,0,0.3); position:relative; }
+        .close-button { color:var(--text-color-dark); position:absolute; right:20px; top:10px; font-size:28px; font-weight:bold; cursor:pointer; }
+        .close-button:hover, .close-button:focus { color:var(--primary-color); text-decoration:none; cursor:pointer; }
+        .modal-content h3 { text-align:center; margin-bottom:20px; }
+        
+        /* Fix for Book a Site Visit modal input styles */
+        #siteVisitModal .modal-content input[type="text"],
+        #siteVisitModal .modal-content input[type="email"],
+        #siteVisitModal .modal-content input[type="tel"],
+        #siteVisitModal .modal-content textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            font-family: 'Montserrat', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+
+        #siteVisitModal .modal-content input[type="text"]:focus,
+        #siteVisitModal .modal-content input[type="email"]:focus,
+        #siteVisitModal .modal-content input[type="tel"]:focus,
+        #siteVisitModal .modal-content textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 5px rgba(160,138,102,0.5);
+        }
+
+        #siteVisitModal .modal-content button[type="submit"] {
+            width: 100%;
+            border: none;
+            padding: 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background-color: var(--primary-color); /* Apply button style */
+            color: var(--bg-dark); /* Apply button style */
+            border-radius: 5px; /* Apply button style */
+            font-weight: 700; /* Apply button style */
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Apply button style */
+        }
+
+        #siteVisitModal .modal-content button[type="submit"]:hover {
+            background-color: #B5A07F; /* Apply button style */
+            transform: translateY(-3px); /* Apply button style */
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4); /* Apply button style */
+        }
+        /* End fix for Book a Site Visit modal input styles */
+
+
+        /* Animations */
+        @keyframes fadeInDown { from { opacity:0; transform: translateY(-20px);} to { opacity:1; transform: translateY(0);} }
+        @keyframes fadeInRight { from { opacity:0; transform: translateX(20px);} to { opacity:1; transform: translateX(0);} }
+        @keyframes fadeInUp { from { opacity:0; transform: translateY(20px);} to { opacity:1; transform: translateY(0);} }
+        @keyframes zoomIn { from { opacity:0; transform: scale(0.9);} to { opacity:1; transform: scale(1);} }
+
+        /* Responsive tweaks */
+        @media (max-width: 992px) {
+            .hero h1 { font-size:3.5em; } .hero p { font-size:1.3em; }
+            #about .container { flex-direction:column; gap:30px; }
+            /* #about .about-img { width:80%; }  -- Removed for full width */
+            .contact-content { flex-direction:column; } footer .container { flex-direction:column; align-items:center; }
+        }
+        @media (max-width: 768px) {
+            h1 { font-size:2.5em; } h2 { font-size:2em; } h3 { font-size:1.7em; }
+
+            header .container { flex-wrap:wrap; }
+
+            /* mobile nav fixed below header */
+            nav {
+                width:100%; order:3; display:none; flex-direction:column; background-color:var(--bg-dark);
+                padding:10px 0; position:fixed; left:0; right:0; top:calc(var(--header-height)); z-index:999;
+                box-shadow:0 8px 20px rgba(0,0,0,0.2);
+            }
+            nav.active { display:flex; }
+            nav ul { flex-direction:column; width:100%; padding-top:15px; }
+            nav ul li { margin:10px 0; text-align:center; }
+            .hamburger { display:flex; }
+
+            .hero h1 { font-size:2.8em; } .hero p { font-size:1.1em; }
+            .btn { padding:12px 25px; font-size:1em; }
+
+            .section-title { font-size:2.5em; }
+
+            .services-grid { grid-template-columns:1fr; }
+            .gallery-grid { grid-template-columns:1fr; }
+            .video-gallery-grid { grid-template-columns:1fr; }
+
+            .testimonial-slide p { font-size:1.1em; }
+            .whatsapp-button { width:50px; height:50px; font-size:1.8em; bottom:20px; right:20px; }
+
+            /* reduce vertical spacing */
+            section:not(.hero) { padding:40px 0; }
+            .services-grid { gap:20px; margin-top:30px; }
+            .gallery-grid { gap:12px; }
+            .hero-content { padding:12px; }
+            .hero h1 { line-height:1.05; }
+
+            /* center contact info on mobile */
+            .contact-info { text-align:center !important; }
+            /* Fix: remove extra space between icon and address in mobile view */
+            .contact-info p { justify-content:center; gap: 5px; } /* Adjusted gap */
+            .about-words-overlay { font-size: 1.8em; } /* Adjust font size for smaller screens */
+        }
+        @media (max-width: 480px) {
+            h1 { font-size:2em; } h2 { font-size:1.8em; } h3 { font-size:1.5em; }
+            .hero h1 { font-size:2.2em; } .hero p { font-size:1em; }
+            .section-title { font-size:2em; } .logo { font-size:1.5em; }
+            .about-words-overlay { font-size: 1.5em; } /* Further adjust font size for very small screens */
+        }
+
+.promo {
+    background-color: #B5A07F;
+    color: #F0F0F0;
+    letter-spacing: 0.4px;
+    margin: 1rem 0;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    display: inline-block;
+    font-weight: 700;
+    font-size: 0.95em;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.promo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+
+        /* header hide on scroll */
+        header.hide-on-scroll { transform: translateY(-110%); transition: transform 300ms ease-in-out; }
+        header { transition: transform 300ms ease-in-out, background-color 0.3s ease; }
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">D & D CONSTRUCTIONS</a>
+            <nav id="main-nav" aria-label="Main navigation">
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#video-gallery">Video Gallery</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger" id="hamburger-menu" aria-label="Open navigation" role="button" tabindex="0">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+<main>
+    <section class="hero" id="home">
+        <div class="hero-background active" style="background-image: url('bac1.png');"></div>
+        <div class="hero-background" style="background-image: url('bac2.png');"></div>
+        <div class="hero-background" style="background-image: url('bac3.png');"></div>
+        <div class="hero-background" style="background-image: url('bac4.png');"></div>
+        <div class="hero-background" style="background-image: url('bac5.png');"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+		    <div class="promo">OVER 35 YEARS OF EXPERTISE</div>
+            <h1>Crafting Exceptional Interiors</h1>
+            <p>Where Luxury Meets Lifestyle – Bespoke Designs for Discerning Clients.</p>
+            <a href="#contact" class="btn">Get a Free Consultation</a>
+            <a href="#" class="site-visit-button" id="openSiteVisitModal">Book a Site Visit</a>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <div class="about-img">
+            <img src="about-luxury.jpg" alt="Luxury Interior Design Example">
+            <div class="about-words-overlay">
+                <span class="about-word" data-delay="0">DESIGN</span>
+                <span class="about-word" data-delay="200">INNOVATION</span>
+                <span class="about-word" data-delay="400">LUXURY</span>
+                <span class="about-word" data-delay="600">QUALITY</span>
+            </div>
+        </div><br>
+        <div class="about-content">
+            <h2 class="section-title">About D & D CONSTRUCTIONS</h2>
+            <p>At D & D CONSTRUCTIONS, we believe that true luxury is found in meticulous detail, unparalleled craftsmanship, and designs that perfectly reflect the unique aspirations of our clients. With over 35 years of expertise, we specialize in creating opulent and functional spaces that redefine modern living and commercial elegance.</p>
+            <p>From sophisticated pantry cupboards to lavish living areas and state-of-the-art TV rooms, our team of seasoned designers and skilled craftsmen are dedicated to transforming your vision into breathtaking reality. We pride ourselves on delivering projects that exceed expectations, setting new benchmarks in interior design for leading hotels, supermarkets, and exclusive residences. Our commitment to excellence ensures every project is a testament to timeless luxury and innovative design.</p>
+            <p>Discover the difference of working with a team committed to excellence, innovation, and timeless luxury. We merge traditional artistry with contemporary trends to deliver spaces that are not just beautiful, but also profoundly personal and enduringly functional. Experience design that transcends the ordinary and truly reflects your refined taste.</p>
+        </div>
+    </section>
+
+    <section id="services" class="container">
+        <h2 class="section-title">Our Exclusive Services</h2>
+        <div class="services-grid">
+            <div class="service-item">
+                <i class="fa-solid fa-utensils"></i>
+                <h3>Bespoke Pantry Cupboard Design</h3>
+                <p>Elevate your culinary space with custom-designed pantry cupboards that blend supreme functionality with sophisticated aesthetics. We create layouts that maximize storage and enhance the flow of your kitchen, using premium materials and finishes, tailored to your exact needs and style.</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-couch"></i>
+                <h3>Luxurious Living Area Design</h3>
+                <p>Transform your living room into a sanctuary of style and comfort. Our designs focus on creating harmonious spaces perfect for relaxation and entertaining, featuring elegant furniture, exquisite lighting, and bespoke decor elements that speak volumes about your taste.</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-tv"></i>
+                <h3>State-of-the-Art TV Room Design</h3>
+                <p>Experience entertainment in ultimate luxury. We design dedicated TV rooms and home theaters that offer unparalleled viewing and acoustic experiences, integrated with smart home technology and plush comfort, creating your personal cinematic escape.</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-bed"></i>
+                <h3>Master Bedroom Suites</h3>
+                <p>Indulge in the serene luxury of a custom-designed master bedroom. We focus on creating tranquil, elegant spaces that promote relaxation and comfort, complete with custom wardrobes, ambient lighting, luxurious textiles, and thoughtful layouts for ultimate repose.</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-bath"></i>
+                <h3>Spa-Inspired Bathroom Designs</h3>
+                <p>Transform your bathroom into a private spa retreat. Our designs incorporate premium fixtures, natural stone, and intelligent layouts to create a luxurious and refreshing experience, ensuring every detail contributes to a serene ambiance.</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-lightbulb"></i>
+                <h3>Smart Home Integration & Lighting</h3>
+                <p>Integrate cutting-edge smart home technology and intelligent lighting solutions to enhance convenience, security, and ambiance, all seamlessly woven into your luxurious interior design for a truly modern living experience.</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-building"></i>
+                <h3>Commercial & Hospitality Interiors</h3>
+                <p>We craft inspiring and highly functional interiors for businesses, from boutique hotels to corporate offices and retail spaces. Our designs enhance brand identity, optimize workflow, and create memorable experiences for clients and guests alike.</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-hammer"></i>
+                <h3>Custom Furniture & Cabinetry</h3>
+                <p>Beyond design, we offer bespoke furniture and cabinetry solutions. Each piece is meticulously crafted to complement your interior, ensuring unique elegance, perfect fit, and superior quality in every detail.</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-palette"></i>
+                <h3>Color Consultation & Material Selection</h3>
+                <p>Our experts guide you through the intricate world of color palettes and material selections. We ensure a cohesive and luxurious aesthetic, choosing textures, finishes, and tones that resonate with your vision and enhance the overall design harmony.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="container">
+        <h2 class="section-title">Our Portfolio of Elegance</h2>
+        <div class="gallery-nav">
+            <button class="filter-button active" data-filter="all">All Projects</button>
+            <button class="filter-button" data-filter="pantry">Pantry Cupboards</button>
+            <button class="filter-button" data-filter="living">Living Areas</button>
+            <button class="filter-button" data-filter="tv-room">TV Rooms</button>
+            <button class="filter-button" data-filter="bedroom">Bedrooms</button>
+            <button class="filter-button" data-filter="bathroom">Bathrooms</button>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item" data-category="pantry">
+                <img src="gallery-pantry1.jpg" alt="Luxury Pantry Cupboard 1">
+                <div class="gallery-item-overlay">
+                    <h4>Modern Gold & Marble Pantry</h4>
+                    <p>A sleek, highly functional pantry with marble countertops and gold accents, designed for a high-end residential kitchen.</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="pantry">
+                <img src="gallery-pantry2.jpg" alt="Luxury Pantry Cupboard 2">
+                <div class="gallery-item-overlay">
+                    <h4>Dark Wood Elegance Pantry</h4>
+                    <p>Custom dark wood cabinetry with integrated lighting and smart storage solutions for a contemporary home.</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="living">
+                <img src="gallery-living1.jpg" alt="Luxury Living Area 1">
+                <div class="gallery-item-overlay">
+                    <h4>Grand Hotel Lobby Lounge</h4>
+                    <p>Opulent design for a luxury hotel's main lounge, featuring plush seating, bespoke chandeliers, and intricate detailing.</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="living">
+                <img src="gallery-living2.jpg" alt="Luxury Living Area 2">
+                <div class="gallery-item-overlay">
+                    <h4>Private Residence Formal Living</h4>
+                    <p>A sophisticated living area in a private villa, combining classic elegance with modern comforts, panoramic views.</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="living">
+                <img src="gallery-living3.jpg" alt="Luxury Living Area 3">
+                <div class="gallery-item-overlay">
+                    <h4>Contemporary Minimalist Living</h4>
+                    <p>Clean lines and a spacious feel define this living area, offering a serene and stylish retreat for a modern apartment.</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="tv-room">
+                <img src="gallery-tvroom1.jpg" alt="Luxury TV Room 1">
+                <div class="gallery-item-overlay">
+                    <h4>Dedicated Home Cinema</h4>
+                    <p>A state-of-the-art home cinema with soundproofing, reclining leather seats, and integrated smart media control.</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="tv-room">
+                <img src="gallery-tvroom2.jpg" alt="Luxury TV Room 2">
+                <div class="gallery-item-overlay">
+                    <h4>Integrated Media Wall</h4>
+                    <p>A stylish TV room featuring a custom-built media wall, ambient lighting, and comfortable, bespoke seating for entertaining.</p>
+                </div>
+            </div>
+             <div class="gallery-item" data-category="pantry">
+                <img src="gallery-pantry3.jpg" alt="Luxury Pantry Cupboard 3">
+                <div class="gallery-item-overlay">
+                    <h4>Sleek & Bright Pantry</h4>
+                    <p>A bright and airy pantry design with glossy finishes and smart storage solutions for modern living.</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="living">
+                <img src="gallery-living4.jpg" alt="Luxury Living Area 4">
+                <div class="gallery-item-overlay">
+                    <h4>Open Plan Urban Loft</h4>
+                    <p>Luxurious open-plan living in an urban loft, showcasing industrial-chic elements with high-end finishes.</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="bedroom">
+                <img src="gallery-bedroom1.jpg" alt="Luxury Bedroom 1">
+                <div class="gallery-item-overlay">
+                    <h4>Elegant Master Suite</h4>
+                    <p>A serene master bedroom designed with rich textures, custom furnishings, and sophisticated lighting for ultimate comfort.</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="bedroom">
+                <img src="gallery-bedroom2.jpg" alt="Luxury Bedroom 2">
+                <div class="gallery-item-overlay">
+                    <h4>Minimalist Chic Bedroom</h4>
+                    <p>Understated luxury defines this bedroom with clean lines, soft tones, and bespoke storage solutions, creating a peaceful retreat.</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="bathroom">
+                <img src="gallery-bathroom1.jpg" alt="Luxury Bathroom 1">
+                <div class="gallery-item-overlay">
+                    <h4>Marble & Gold Spa Bathroom</h4>
+                    <p>An exquisite bathroom featuring opulent marble, gold fixtures, and a freestanding tub, designed for a spa-like experience.</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="bathroom">
+                <img src="gallery-bathroom2.jpg" alt="Luxury Bathroom 2">
+                <div class="gallery-item-overlay">
+                    <h4>Contemporary Ensuite Bathroom</h4>
+                    <p>A modern and functional ensuite bathroom with sleek finishes, smart storage, and ambient lighting, perfect for daily luxury.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="video-gallery" class="container">
+        <h2 class="section-title">Our Vision in Motion</h2>
+        <p>Explore our video gallery to see behind-the-scenes, project showcases, and testimonials that bring our designs to life. Witness the craftsmanship and attention to detail that sets D & D CONSTRUCTIONS apart in every luxurious interior we create.</p>
+        <div class="video-gallery-grid">
+            <div class="video-item"><video src="1.mp4" controls preload="metadata" playsinline aria-label="Video 1 — click to play"></video></div>
+            <div class="video-item"><video src="2.mp4" controls preload="metadata" playsinline aria-label="Video 2 — click to play"></video></div>
+            <div class="video-item"><video src="3.mp4" controls preload="metadata" playsinline aria-label="Video 3 — click to play"></video></div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <h2 class="section-title">What Our Clients Say</h2>
+
+        <!-- testimonial carousel now uses a track to slide -->
+        <div class="testimonial-carousel">
+            <div class="testimonial-track" id="testimonial-track">
+                <div class="testimonial-slide">
+                    <p>"D & D CONSTRUCTIONS transformed our hotel lobby into a masterpiece of modern luxury. The attention to detail and impeccable finish were truly beyond our expectations. Our guests are consistently impressed and often comment on the sophisticated ambiance!"</p>
+                    <span class="testimonial-author">- Mr. R. Perera, General Manager, Grand Hotel Colombo</span>
+                </div>
+
+                <div class="testimonial-slide">
+                    <p>"We needed a sophisticated and highly functional design for our new supermarket chain. D & D delivered an outstanding solution that perfectly balances aesthetics with practical requirements, enhancing the customer experience significantly. Highly recommended for commercial projects."</p>
+                    <span class="testimonial-author">- Ms. S. De Silva, CEO, Elite Grocers</span>
+                </div>
+
+                <div class="testimonial-slide">
+                    <p>"Our private residence now feels like a luxurious resort thanks to D & D CONSTRUCTIONS. Their living area and TV room designs are simply stunning, creating spaces we absolutely love to live in and entertain guests. The bespoke pantry is also a dream!"</p>
+                    <span class="testimonial-author">- Dr. & Mrs. Fernando, Private Residence Client</span>
+                </div>
+
+                <div class="testimonial-slide">
+                    <p>"The team at D & D CONSTRUCTIONS brought our vision for a serene master bedroom to life with unparalleled elegance. Every detail, from the custom wardrobe to the lighting, exudes luxury and comfort. We couldn't be happier with the result."</p>
+                    <span class="testimonial-author">- Mr. & Mrs. Rajapakse, Private Homeowners</span>
+                </div>
+
+                 <div class="testimonial-slide">
+                    <p>"For our new corporate headquarters, D & D CONSTRUCTIONS delivered an office space that is both visually stunning and incredibly efficient. Their understanding of commercial design, coupled with their flair for luxury, created an environment that inspires productivity and professionalism."</p>
+                    <span class="testimonial-author">- Mr. A. Mendis, Director, Innovate Solutions</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-controls">
+            <button id="prev-testimonial">Prev</button>
+            <button id="next-testimonial">Next</button>
+        </div>
+    </section>
+
+    <section id="contact" class="container">
+        <h2 class="section-title">Connect With Us</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 29/4/A ,Kottawa Road, Mavittara, Piliyandala, Sri Lanka.</p>
+                <p><i class="fas fa-phone-alt"></i> +94 77 745 0234</p>
+                <p><i class="fas fa-envelope"></i> info@ddconstructions.com</p>
+                <p><i class="fas fa-globe"></i> www.ddconstructions.com</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/DandDConstructions" target="_blank" aria-label="Follow us on Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/danddconstructions" target="_blank" aria-label="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/d-and-d-constructions" target="_blank" aria-label="Connect with us on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="contact-form-container">
+                <h3>Send Us a Message</h3>
+                <form class="contact-form" action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Your Phone (Optional)</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-col">
+            <h4>D & D CONSTRUCTIONS</h4>
+            <p>Crafting unparalleled luxury interiors for discerning clients, from grand hotels to elegant private residences, with over 35 years of dedicated expertise.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#gallery">Portfolio</a></li>
+                <li><a href="#testimonials">Client Reviews</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="#" id="footer-site-visit">Book a Site Visit</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Contact Info</h4>
+            <p><i class="fas fa-map-marker-alt"></i> 29/4/A ,Kottawa Road, Mavittara, Piliyandala, Sri Lanka.</p>
+            <p><i class="fas fa-phone-alt"></i> +94 77 745 0234</p>
+            <p><i class="fas fa-envelope"></i> info@ddconstructions.com</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/DandDConstructions" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/danddconstructions" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/d-and-d-constructions" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2023 D & D CONSTRUCTIONS. All Rights Reserved.
+    </div>
+</footer>
+
+<a href="https://wa.me/94777450234" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Site Visit Booking Modal -->
+<div id="siteVisitModal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+        <span class="close-button" role="button" aria-label="Close modal">&times;</span>
+        <h3>Book a Site Visit</h3>
+        <p>Please fill out the form below, and our team will contact you to schedule a convenient time for your personalized site visit.</p>
+        <form id="siteVisitForm" action="#" method="POST">
+            <div class="form-group">
+                <label for="sv-name">Your Full Name</label>
+                <input type="text" id="sv-name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="sv-email">Your Email</label>
+                <input type="email" id="sv-email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="sv-phone">Your Phone Number</label>
+                <input type="tel" id="sv-phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="sv-address">Project Address</label>
+                <textarea id="sv-address" name="address" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="sv-details">Brief Project Details / Preferred Date</label>
+                <textarea id="sv-details" name="details" rows="4"></textarea>
+            </div>
+            <button type="submit">Submit Request</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Smooth scrolling for navigation (respect header height)
+    document.querySelectorAll('nav ul li a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (!target) return;
+            const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || document.querySelector('header').getBoundingClientRect().height || 72;
+            const top = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 8;
+            window.scrollTo({ top, behavior: 'smooth' });
+
+            // Close mobile nav if open
+            if (document.getElementById('main-nav').classList.contains('active')) {
+                document.getElementById('main-nav').classList.remove('active');
+                document.getElementById('hamburger-menu').classList.remove('active');
+            }
+        });
+    });
+
+    // Header scrolled state
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+    });
+
+    // Hero slideshow
+    const heroBackgrounds = document.querySelectorAll('.hero-background');
+    let currentHeroIndex = 0;
+    function changeHeroBackground() {
+        heroBackgrounds[currentHeroIndex].classList.remove('active');
+        currentHeroIndex = (currentHeroIndex + 1) % heroBackgrounds.length;
+        heroBackgrounds[currentHeroIndex].classList.add('active');
+    }
+    setInterval(changeHeroBackground, 5000);
+
+    // Mobile nav toggle
+    const hamburger = document.getElementById('hamburger-menu');
+    const nav = document.getElementById('main-nav');
+    hamburger.addEventListener('click', () => {
+        nav.classList.toggle('active');
+        hamburger.classList.toggle('active');
+        setTimeout(updateHeaderHeightVar, 200);
+    });
+
+    // Gallery filtering
+    const filterButtons = document.querySelectorAll('.filter-button');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            const filter = button.dataset.filter;
+            galleryItems.forEach(item => {
+                if (filter === 'all' || item.dataset.category === filter) {
+                    item.style.display = 'block';
+                    setTimeout(() => item.style.opacity = '1', 50);
+                } else {
+                    item.style.opacity = '0';
+                    setTimeout(() => item.style.display = 'none', 300);
+                }
+            });
+        });
+    });
+
+    // Testimonials carousel (updated to use a track)
+    const testimonialTrack = document.getElementById('testimonial-track');
+    const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+    const prevBtn = document.getElementById('prev-testimonial');
+    const nextBtn = document.getElementById('next-testimonial');
+    let currentTestimonialIndex = 0;
+
+    function updateTestimonialPosition() {
+        const offset = -currentTestimonialIndex * 100;
+        testimonialTrack.style.transform = `translateX(${offset}%)`;
+    }
+
+    prevBtn.addEventListener('click', () => {
+        currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonialSlides.length) % testimonialSlides.length;
+        updateTestimonialPosition();
+    });
+
+    nextBtn.addEventListener('click', () => {
+        currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonialSlides.length;
+        updateTestimonialPosition();
+    });
+
+    // automatic rotation
+    let testimonialInterval = setInterval(() => {
+        currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonialSlides.length;
+        updateTestimonialPosition();
+    }, 7000);
+
+    // pause on hover/touch
+    const testimonialCarouselEl = document.querySelector('.testimonial-carousel');
+    testimonialCarouselEl.addEventListener('mouseenter', () => clearInterval(testimonialInterval));
+    testimonialCarouselEl.addEventListener('mouseleave', () => {
+        testimonialInterval = setInterval(() => {
+            currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonialSlides.length;
+            updateTestimonialPosition();
+        }, 7000);
+    });
+
+    // Site Visit Modal
+    const siteVisitModal = document.getElementById('siteVisitModal');
+    const openSiteVisitModalBtn = document.getElementById('openSiteVisitModal');
+    const closeSiteVisitModalBtn = document.querySelector('#siteVisitModal .close-button');
+    const siteVisitForm = document.getElementById('siteVisitForm');
+    const footerSiteVisitBtn = document.getElementById('footer-site-visit'); // Added for footer link
+
+    openSiteVisitModalBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        siteVisitModal.style.display = 'block';
+        siteVisitModal.setAttribute('aria-hidden', 'false');
+    });
+
+    // Event listener for the footer site visit button
+    if (footerSiteVisitBtn) {
+        footerSiteVisitBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            siteVisitModal.style.display = 'block';
+            siteVisitModal.setAttribute('aria-hidden', 'false');
+        });
+    }
+
+    closeSiteVisitModalBtn.addEventListener('click', () => {
+        siteVisitModal.style.display = 'none';
+        siteVisitModal.setAttribute('aria-hidden', 'true');
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target == siteVisitModal) {
+            siteVisitModal.style.display = 'none';
+            siteVisitModal.setAttribute('aria-hidden', 'true');
+        }
+    });
+
+    siteVisitForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(siteVisitForm);
+        const data = {};
+        formData.forEach((value, key) => (data[key] = value));
+        console.log('Site Visit Request Submitted:', data);
+        alert('Your site visit request has been submitted! We will contact you shortly.');
+        siteVisitModal.style.display = 'none';
+        siteVisitModal.setAttribute('aria-hidden', 'true');
+        siteVisitForm.reset();
+    });
+
+    // Contact form handler
+    document.querySelector('.contact-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = {};
+        formData.forEach((value, key) => (data[key] = value));
+        console.log('Contact Form Submitted:', data);
+        alert('Your message has been sent! We will get back to you soon.');
+        e.target.reset();
+    });
+
+    /* Header height + observer (keeps sections visible reliably on mobile) */
+    (function() {
+        const header = document.querySelector('header');
+        const navEl = document.getElementById('main-nav');
+        let sectionObserver = null;
+
+        function updateHeaderHeightVar() {
+            const h = header.getBoundingClientRect().height;
+            document.documentElement.style.setProperty('--header-height', h + 'px');
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.paddingTop = `${h}px`;
+                hero.style.minHeight = `calc(100vh - ${h}px)`;
+            }
+            if (navEl) navEl.style.top = `${h}px`;
+            createObserver(h);
+        }
+
+        function createObserver(headerHeight) {
+            if (sectionObserver) sectionObserver.disconnect();
+            const topMargin = -Math.max(0, headerHeight - 8);
+            sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: `${topMargin}px 0px -10% 0px`,
+                threshold: 0.05
+            });
+            document.querySelectorAll('section:not(.hero)').forEach(s => sectionObserver.observe(s));
+        }
+
+        window.addEventListener('load', () => { updateHeaderHeightVar(); document.querySelector('.hero') && document.querySelector('.hero').classList.add('visible'); });
+        window.addEventListener('resize', updateHeaderHeightVar);
+
+        // hide header on scroll down, show on up
+        let lastY = window.scrollY || 0;
+        let ticking = false;
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const currentY = window.scrollY;
+                    const threshold = 10;
+                    if (currentY > lastY + threshold && currentY > 100) {
+                        header.classList.add('hide-on-scroll');
+                    } else if (currentY < lastY - threshold) {
+                        header.classList.remove('hide-on-scroll');
+                    }
+                    lastY = currentY;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+            // close mobile nav while scrolling
+            if (navEl && navEl.classList.contains('active')) {
+                navEl.classList.remove('active');
+                document.getElementById('hamburger-menu').classList.remove('active');
+            }
+        });
+
+        setTimeout(updateHeaderHeightVar, 500);
+    })();
+
+    // ensure hero visible immediately
+    document.querySelector('.hero') && document.querySelector('.hero').classList.add('visible');
+
+    // initialize testimonial position (in case page starts not at 0)
+    updateTestimonialPosition();
+
+    // Intersection Observer for words on about-luxury.jpg
+    const aboutImg = document.querySelector('#about .about-img');
+    const aboutWords = document.querySelectorAll('.about-word');
+
+    const aboutImageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                aboutWords.forEach((word, index) => {
+                    setTimeout(() => {
+                        word.classList.add('visible');
+                    }, word.dataset.delay);
+                });
+                // No need to unobserve if you want the animation to re-play on scroll up/down
+                // aboutImageObserver.unobserve(entry.target);
+            } else {
+                // Optionally remove 'visible' class if it scrolls out of view
+                aboutWords.forEach((word) => {
+                    word.classList.remove('visible');
+                });
+            }
+        });
+    }, {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5 // Adjust as needed, 0.5 means when 50% of the image is visible
+    });
+
+    if (aboutImg) {
+        aboutImageObserver.observe(aboutImg);
+    }
+
+</script>
+</body>
+</html>
