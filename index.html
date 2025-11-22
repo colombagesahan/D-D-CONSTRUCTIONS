@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>D & D CONSTRUCTIONS - Luxury Interior Design</title>
+    <title>Platinum Interior Designs Pvt Ltd - Luxury Interior Design</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -135,12 +135,12 @@
         .section-title::after { content:''; position:absolute; left:50%; bottom:0; transform:translateX(-50%); width:80px; height:3px; background-color:var(--primary-color); }
 
         /* About */
-        #about .container { display:flex; align-items:center; gap:50px; text-align:left;margin: 0; }
+        #about .container { display:flex; align-items:center; gap:50px; text-align:left; }
         #about .about-img {
             flex: 1;
             min-width: 100%; /* Make it take full width */
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            border-radius: 20px;
+            border-radius: 8px;
             overflow: hidden;
             animation: zoomIn 1s ease-out;
             position: relative;
@@ -174,7 +174,7 @@
             opacity: 0;
             transform: translateY(20px) scale(0.8); /* Initial smaller scale */
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            margin: 20px 0; /* Add some spacing between words */
+            margin: 5px 0; /* Add some spacing between words */
             text-align: center;
             width: 100%; /* Ensure words take full width for centering */
         }
@@ -255,7 +255,7 @@
         .contact-content { display:flex; gap:50px; text-align:left; margin-top:50px; }
         .contact-info, .contact-form-container { flex:1; }
         .contact-info h3 { color: var(--secondary-color); margin-bottom:20px; }
-        .contact-info p { margin-bottom:10px; align-items:center; gap:10px; }
+        .contact-info p { margin-bottom:10px; display:flex; align-items:center; gap:10px; }
         .contact-info i { color: var(--primary-color); font-size:1.2em; }
         .social-links { margin-top:20px; }
         .social-links a { color: var(--secondary-color); font-size:2em; margin-right:20px; transition:color 0.3s ease; }
@@ -392,7 +392,18 @@
             /* Fix: remove extra space between icon and address in mobile view */
             .contact-info p { justify-content:center; gap: 5px; } /* Adjusted gap */
             .about-words-overlay { font-size: 1.8em; } /* Adjust font size for smaller screens */
+			
+			#contact .contact-info p i {
+                margin-right: 10px; /* Adjust this value (e.g., 8px, 12px) as needed */
+                vertical-align: middle; /* Helps align the icon with the text baseline */
+            }
+  .contact-info p {
+                text-align: center; /* Ensure the text itself within the p is centered */
+                display: block; /* Revert to default block display for p if needed */
+            }
+
         }
+		
         @media (max-width: 480px) {
             h1 { font-size:2em; } h2 { font-size:1.8em; } h3 { font-size:1.5em; }
             .hero h1 { font-size:2.2em; } .hero p { font-size:1em; }
@@ -402,7 +413,7 @@
 
 .promo {
     background-color: #B5A07F;
-    color: #F0F0F0;
+    color: #333333;
     letter-spacing: 0.4px;
     margin: 1rem 0;
     padding: 0.6rem 1rem;
@@ -419,6 +430,356 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
+/* Why Choose Us Section */
+        #why-choose-us {
+            background-color: var(--bg-light); /* Or adjust as desired */
+            padding: 80px 0;
+        }
+
+        #why-choose-us .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-top: -40px; /* Pull it closer to the title */
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .choose-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .choose-us-item {
+            background-color: var(--bg-light);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #eee; /* Subtle border for definition */
+        }
+        
+        .choose-us-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px; /* Thin line at the top */
+            background-color: var(--primary-color);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease-out;
+        }
+
+        .choose-us-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .choose-us-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .choose-us-item i {
+            font-size: 3.5em; /* Slightly larger icons */
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            transition: transform 0.3s ease, color 0.3s ease;
+            display: block; /* Ensure it takes full width for centering */
+            text-align: center;
+        }
+
+        .choose-us-item:hover i {
+            transform: scale(1.05);
+            color: var(--secondary-color); /* Change icon color on hover */
+        }
+
+        .choose-us-item h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.6em; /* Make headings more prominent */
+        }
+
+        .choose-us-item p {
+            color: var(--text-color-dark);
+            line-height: 1.7;
+            font-size: 0.95em;
+        }
+
+        /* Responsive adjustments for Why Choose Us */
+        @media (max-width: 768px) {
+            #why-choose-us .subtitle {
+                font-size: 1em;
+                margin-bottom: 40px;
+            }
+            .choose-us-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .choose-us-item h3 {
+                font-size: 1.4em;
+            }
+            .choose-us-item i {
+                font-size: 3em;
+            }
+        }
+
+/* FAQ Section */
+        #faq {
+            background-color: #f8f8f8; /* Light background for contrast */
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 50px auto 30px auto;
+            text-align: left;
+        }
+
+        .faq-item {
+            background-color: var(--bg-light);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            width: 100%;
+            background-color: var(--bg-light);
+            color: var(--secondary-color);
+            padding: 20px 30px;
+            border: none;
+            text-align: left;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-family: 'Montserrat', sans-serif; /* Keep consistent font */
+            border-bottom: 1px solid #eee; /* Separator for clarity */
+        }
+
+        .faq-question::after {
+            content: '\002B'; /* Plus sign */
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin-left: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active {
+            background-color: var(--primary-color);
+            color: var(--bg-dark); /* Dark text on gold background */
+            border-bottom: 1px solid var(--primary-color); /* Matches background */
+        }
+
+        .faq-question.active::after {
+            content: '\2212'; /* Minus sign */
+            transform: rotate(0deg);
+            color: var(--bg-dark); /* Dark minus sign */
+        }
+
+        .faq-answer {
+            padding: 0 30px;
+            background-color: var(--bg-light);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+        }
+
+        .faq-answer p {
+            padding: 20px 0;
+            margin: 0;
+            color: var(--text-color-dark);
+            line-height: 1.7;
+        }
+
+        .faq-contact-cta {
+            margin-top: 40px;
+            font-size: 1.2em;
+            color: var(--secondary-color);
+            line-height: 1.6;
+        }
+
+        .faq-contact-cta a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .faq-contact-cta a:hover {
+            color: #B5A07F; /* Slightly lighter primary on hover */
+            text-decoration: underline;
+        }
+
+        /* Responsive adjustments for FAQ */
+        @media (max-width: 768px) {
+            .faq-question {
+                font-size: 1.1em;
+                padding: 15px 20px;
+            }
+            .faq-answer {
+                padding: 0 20px;
+            }
+            .faq-answer p {
+                padding: 15px 0;
+            }
+            .faq-contact-cta {
+                font-size: 1em;
+            }
+        }
+
+/* Promotional Vision Section */
+        #promo-vision {
+            position: relative;
+            height: 600px; /* Adjust height as needed */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-color-light);
+            overflow: hidden; /* Crucial for sliding text */
+            scroll-margin-top: calc(var(--header-height) + 16px);
+        }
+
+        .promo-vision-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.7); /* Darken image slightly */
+            z-index: 1;
+        }
+
+        .promo-vision-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5); /* Stronger overlay for text readability */
+            z-index: 2;
+        }
+
+        .promo-vision-content {
+            position: relative;
+            z-index: 3;
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        .promo-vision-content .promo-title {
+            color: var(--text-color-light); /* Make title white */
+            margin-bottom: 40px;
+            font-size: 3.5em; /* Larger title */
+        }
+
+        .promo-vision-content .promo-title::after {
+            background-color: var(--primary-color); /* Gold line under title */
+        }
+
+        .sliding-text-container {
+            /* Change height to a larger value or 'auto' if you prefer */
+            /* Using a sufficiently large min-height is often better for animation */
+            min-height: 120px; /* Increased height to accommodate wrapped text, adjust as needed */
+            overflow: hidden;
+            margin-bottom: 40px;
+            position: relative;
+            display: flex; /* Use flex to center vertically if min-height is larger */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+        }
+
+        .sliding-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2em; /* Prominent text */
+            font-weight: 700;
+            color: var(--primary-color); /* Gold text */
+            margin: 0;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) translateY(100%); /* Start off-screen below */
+            opacity: 0;
+            transition: transform 1s ease-out, opacity 0.8s ease-out;
+            /* REMOVED: white-space: nowrap; */ /* This line should be removed */
+            width: 90%; /* Add a width to allow wrapping within the container */
+            max-width: 800px; /* Optional: maximum width to prevent very long lines */
+            box-sizing: border-box; /* Include padding/border in width calculation */
+            line-height: 1.3; /* Adjust line height for readability with wrapping */
+        }
+
+        .sliding-text.active {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .promo-btn {
+            background-color: var(--primary-color);
+            color: var(--bg-dark);
+        }
+
+        .promo-btn:hover {
+            background-color: #B5A07F;
+        }
+
+        /* Responsive adjustments for promo-vision */
+        @media (max-width: 768px) {
+            #promo-vision {
+                height: 450px;
+            }
+            .promo-vision-content .promo-title {
+                font-size: 2.8em;
+                margin-bottom: 30px;
+            }
+            .sliding-text-container {
+                height: 50px;
+                margin-bottom: 30px;
+            }
+            .sliding-text {
+                font-size: 1.8em;
+            }
+        }
+        @media (max-width: 480px) {
+            #promo-vision {
+                height: 350px;
+            }
+            .promo-vision-content .promo-title {
+                font-size: 2em;
+                margin-bottom: 20px;
+            }
+            .sliding-text-container {
+                height: 40px;
+                margin-bottom: 20px;
+            }
+            .sliding-text {
+                font-size: 1.4em;
+                padding: 0 10px; /* Add some horizontal padding for smaller screens */
+            }
+        }
 
         /* header hide on scroll */
         header.hide-on-scroll { transform: translateY(-110%); transition: transform 300ms ease-in-out; }
@@ -430,7 +791,7 @@
 <body>
     <header>
         <div class="container">
-            <a href="#" class="logo">D & D CONSTRUCTIONS</a>
+            <a href="#" class="logo">Platinum Interior Designs</a>
             <nav id="main-nav" aria-label="Main navigation">
                 <ul>
                     <li><a href="#about">About Us</a></li>
@@ -475,10 +836,10 @@
                 <span class="about-word" data-delay="400">LUXURY</span>
                 <span class="about-word" data-delay="600">QUALITY</span>
             </div>
-        </div><br>
+        </div>
         <div class="about-content">
-            <h2 class="section-title">About D & D CONSTRUCTIONS</h2>
-            <p>At D & D CONSTRUCTIONS, we believe that true luxury is found in meticulous detail, unparalleled craftsmanship, and designs that perfectly reflect the unique aspirations of our clients. With over 35 years of expertise, we specialize in creating opulent and functional spaces that redefine modern living and commercial elegance.</p>
+            <h2 class="section-title">About Platinum Interior Designs Pvt Ltd</h2>
+            <p>At Platinum Interior Designs Pvt Ltd, we believe that true luxury is found in meticulous detail, unparalleled craftsmanship, and designs that perfectly reflect the unique aspirations of our clients. With over 35 years of expertise, we specialize in creating opulent and functional spaces that redefine modern living and commercial elegance.</p>
             <p>From sophisticated pantry cupboards to lavish living areas and state-of-the-art TV rooms, our team of seasoned designers and skilled craftsmen are dedicated to transforming your vision into breathtaking reality. We pride ourselves on delivering projects that exceed expectations, setting new benchmarks in interior design for leading hotels, supermarkets, and exclusive residences. Our commitment to excellence ensures every project is a testament to timeless luxury and innovative design.</p>
             <p>Discover the difference of working with a team committed to excellence, innovation, and timeless luxury. We merge traditional artistry with contemporary trends to deliver spaces that are not just beautiful, but also profoundly personal and enduringly functional. Experience design that transcends the ordinary and truly reflects your refined taste.</p>
         </div>
@@ -531,6 +892,59 @@
                 <i class="fas fa-palette"></i>
                 <h3>Color Consultation & Material Selection</h3>
                 <p>Our experts guide you through the intricate world of color palettes and material selections. We ensure a cohesive and luxurious aesthetic, choosing textures, finishes, and tones that resonate with your vision and enhance the overall design harmony.</p>
+            </div>
+        </div>
+    </section>
+
+<!-- New Promotional Section with Image and Sliding Text -->
+    <section id="promo-vision">
+        <div class="promo-vision-background" style="background-image: url('bac06.png');"></div>
+        <div class="promo-vision-overlay"></div>
+        <div class="promo-vision-content container">
+            <h2 class="promo-title section-title">Our Vision for Your Space</h2>
+            <div class="sliding-text-container">
+                <p class="sliding-text active">Crafting luxurious environments that inspire.</p>
+                <p class="sliding-text">Innovative design meets impeccable functionality.</p>
+                <p class="sliding-text">Where every detail reflects your unique taste.</p>
+                <p class="sliding-text">Transforming spaces into timeless masterpieces.</p>
+            </div>
+            <a href="#contact" class="btn promo-btn">Start Your Project</a>
+        </div>
+    </section>
+
+<section id="why-choose-us" class="container">
+        <h2 class="section-title">Why Choose Platinum Interior Designs Pvt Ltd?</h2>
+        <p class="subtitle">Experience the difference of a partner dedicated to excellence, innovation, and timeless luxury.</p>
+        <div class="choose-us-grid">
+            <div class="choose-us-item">
+                <i class="fas fa-gem"></i>
+                <h3>Unmatched Expertise (35+ Years)</h3>
+                <p>Benefit from over three decades of industry leadership. Our extensive experience ensures every project, from concept to completion, is handled with unparalleled skill and insight, delivering superior results.</p>
+            </div>
+            <div class="choose-us-item">
+                <i class="fas fa-hand-sparkles"></i>
+                <h3>Bespoke Craftsmanship</h3>
+                <p>We pride ourselves on meticulous attention to detail and custom-tailored solutions. Each design is a unique reflection of your vision, crafted with the finest materials and exceptional artistry to create spaces that truly stand out.</p>
+            </div>
+            <div class="choose-us-item">
+                <i class="fas fa-lightbulb"></i>
+                <h3>Innovative Design Solutions</h3>
+                <p>Stay ahead with cutting-edge design and smart integration. We blend contemporary trends with timeless elegance, utilizing innovative techniques and technologies to create functional, beautiful, and future-ready interiors.</p>
+            </div>
+            <div class="choose-us-item">
+                <i class="fas fa-award"></i>
+                <h3>Commitment to Quality</h3>
+                <p>Quality is the cornerstone of our work. From initial consultation to final installation, we adhere to the highest standards, ensuring durability, aesthetic perfection, and lasting satisfaction with every element.</p>
+            </div>
+            <div class="choose-us-item">
+                <i class="fas fa-headset"></i>
+                <h3>Client-Centric Approach</h3>
+                <p>Your satisfaction is our priority. We foster open communication, listen to your needs, and collaborate closely at every stage to ensure your expectations are not just met, but consistently exceeded, creating a seamless and enjoyable experience.</p>
+            </div>
+            <div class="choose-us-item">
+                <i class="fas fa-clipboard-check"></i>
+                <h3>Timely Project Delivery</h3>
+                <p>We understand the importance of deadlines. Our efficient project management and dedicated team ensure that your luxury interior project is completed on time and within budget, without compromising on quality or detail.</p>
             </div>
         </div>
     </section>
@@ -642,7 +1056,7 @@
 
     <section id="video-gallery" class="container">
         <h2 class="section-title">Our Vision in Motion</h2>
-        <p>Explore our video gallery to see behind-the-scenes, project showcases, and testimonials that bring our designs to life. Witness the craftsmanship and attention to detail that sets D & D CONSTRUCTIONS apart in every luxurious interior we create.</p>
+        <p>Explore our video gallery to see behind-the-scenes, project showcases, and testimonials that bring our designs to life. Witness the craftsmanship and attention to detail that sets Platinum Interior Designs Pvt Ltd apart in every luxurious interior we create.</p>
         <div class="video-gallery-grid">
             <div class="video-item"><video src="1.mp4" controls preload="metadata" playsinline aria-label="Video 1 — click to play"></video></div>
             <div class="video-item"><video src="2.mp4" controls preload="metadata" playsinline aria-label="Video 2 — click to play"></video></div>
@@ -657,27 +1071,27 @@
         <div class="testimonial-carousel">
             <div class="testimonial-track" id="testimonial-track">
                 <div class="testimonial-slide">
-                    <p>"D & D CONSTRUCTIONS transformed our hotel lobby into a masterpiece of modern luxury. The attention to detail and impeccable finish were truly beyond our expectations. Our guests are consistently impressed and often comment on the sophisticated ambiance!"</p>
+                    <p>"Platinum Interior Designs Pvt Ltd transformed our hotel lobby into a masterpiece of modern luxury. The attention to detail and impeccable finish were truly beyond our expectations. Our guests are consistently impressed and often comment on the sophisticated ambiance!"</p>
                     <span class="testimonial-author">- Mr. R. Perera, General Manager, Grand Hotel Colombo</span>
                 </div>
 
                 <div class="testimonial-slide">
-                    <p>"We needed a sophisticated and highly functional design for our new supermarket chain. D & D delivered an outstanding solution that perfectly balances aesthetics with practical requirements, enhancing the customer experience significantly. Highly recommended for commercial projects."</p>
+                    <p>"We needed a sophisticated and highly functional design for our new supermarket chain. Platinum Interior Designs Pvt Ltd delivered an outstanding solution that perfectly balances aesthetics with practical requirements, enhancing the customer experience significantly. Highly recommended for commercial projects."</p>
                     <span class="testimonial-author">- Ms. S. De Silva, CEO, Elite Grocers</span>
                 </div>
 
                 <div class="testimonial-slide">
-                    <p>"Our private residence now feels like a luxurious resort thanks to D & D CONSTRUCTIONS. Their living area and TV room designs are simply stunning, creating spaces we absolutely love to live in and entertain guests. The bespoke pantry is also a dream!"</p>
+                    <p>"Our private residence now feels like a luxurious resort thanks to Platinum Interior Designs Pvt Ltd. Their living area and TV room designs are simply stunning, creating spaces we absolutely love to live in and entertain guests. The bespoke pantry is also a dream!"</p>
                     <span class="testimonial-author">- Dr. & Mrs. Fernando, Private Residence Client</span>
                 </div>
 
                 <div class="testimonial-slide">
-                    <p>"The team at D & D CONSTRUCTIONS brought our vision for a serene master bedroom to life with unparalleled elegance. Every detail, from the custom wardrobe to the lighting, exudes luxury and comfort. We couldn't be happier with the result."</p>
+                    <p>"The team at Platinum Interior Designs Pvt Ltd brought our vision for a serene master bedroom to life with unparalleled elegance. Every detail, from the custom wardrobe to the lighting, exudes luxury and comfort. We couldn't be happier with the result."</p>
                     <span class="testimonial-author">- Mr. & Mrs. Rajapakse, Private Homeowners</span>
                 </div>
 
                  <div class="testimonial-slide">
-                    <p>"For our new corporate headquarters, D & D CONSTRUCTIONS delivered an office space that is both visually stunning and incredibly efficient. Their understanding of commercial design, coupled with their flair for luxury, created an environment that inspires productivity and professionalism."</p>
+                    <p>"For our new corporate headquarters, Platinum Interior Designs Pvt Ltd delivered an office space that is both visually stunning and incredibly efficient. Their understanding of commercial design, coupled with their flair for luxury, created an environment that inspires productivity and professionalism."</p>
                     <span class="testimonial-author">- Mr. A. Mendis, Director, Innovate Solutions</span>
                 </div>
             </div>
@@ -689,6 +1103,47 @@
         </div>
     </section>
 
+<section id="faq" class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">What types of projects do Platinum Interior Designs Pvt Ltd specialize in?</button>
+                <div class="faq-answer">
+                    <p>Platinum Interior Designs Pvt Ltd specializes in luxury interior design for both residential and commercial projects. This includes bespoke pantry cupboards, opulent living areas, state-of-the-art TV rooms, master bedroom suites, spa-inspired bathrooms, and comprehensive commercial/hospitality interiors. We also offer custom furniture, cabinetry, smart home integration, and expert color/material consultation.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">How does the design process work, from initial contact to project completion?</button>
+                <div class="faq-answer">
+                    <p>Our process typically begins with an initial consultation to understand your vision, needs, and budget. Following this, we proceed with conceptual design, material selection, detailed planning, and 3D renderings for your approval. Once approved, our skilled team manages the construction, fabrication, and installation phases, ensuring meticulous execution and timely delivery. We maintain open communication throughout the entire journey.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Can you work with my existing architectural plans or do you provide full design-build services?</button>
+                <div class="faq-answer">
+                    <p>Yes, we are highly flexible. We can seamlessly integrate our interior design expertise with your existing architectural plans, or we can provide full design-build services from scratch, handling everything from spatial planning and interior architecture to furniture design and final styling. Our goal is to work collaboratively to achieve your desired outcome.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">What is your typical project timeline and budget considerations?</button>
+                <div class="faq-answer">
+                    <p>Project timelines and budgets vary significantly depending on the scope, complexity, and customization required. During our initial consultation, we provide a transparent discussion about potential costs and realistic timelines based on your specific project requirements. We strive to deliver exceptional value and ensure clear financial expectations from the outset.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Do you offer post-completion support or maintenance services?</button>
+                <div class="faq-answer">
+                    <p>Yes, our commitment to client satisfaction extends beyond project completion. We offer post-completion support to address any queries or minor adjustments needed. We also provide guidance on care and maintenance for your new interiors to ensure their longevity and pristine condition. Our relationship with clients is built on long-term trust and support.</p>
+                </div>
+            </div>
+        </div>
+        <p class="faq-contact-cta">Have more questions? We're here to help! Please don't hesitate to <a href="#contact">contact us directly</a> or call us at <strong>+94 77 745 0234</strong> for personalized assistance.</p>
+    </section>
+
     <section id="contact" class="container">
         <h2 class="section-title">Connect With Us</h2>
         <div class="contact-content">
@@ -696,8 +1151,8 @@
                 <h3>Get in Touch</h3>
                 <p><i class="fas fa-map-marker-alt"></i> 29/4/A ,Kottawa Road, Mavittara, Piliyandala, Sri Lanka.</p>
                 <p><i class="fas fa-phone-alt"></i> +94 77 745 0234</p>
-                <p><i class="fas fa-envelope"></i> info@ddconstructions.com</p>
-                <p><i class="fas fa-globe"></i> www.ddconstructions.com</p>
+                <p><i class="fas fa-envelope"></i> info@platinuminteriordesigns.com</p>
+                <p><i class="fas fa-globe"></i> www.platinuminteriordesigns.com</p>
                 <div class="social-links">
                     <a href="https://www.facebook.com/DandDConstructions" target="_blank" aria-label="Follow us on Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://www.instagram.com/danddconstructions" target="_blank" aria-label="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
@@ -734,7 +1189,7 @@
 <footer>
     <div class="container">
         <div class="footer-col">
-            <h4>D & D CONSTRUCTIONS</h4>
+            <h4>Platinum Interior Designs Pvt Ltd</h4>
             <p>Crafting unparalleled luxury interiors for discerning clients, from grand hotels to elegant private residences, with over 35 years of dedicated expertise.</p>
         </div>
         <div class="footer-col">
@@ -752,16 +1207,16 @@
             <h4>Contact Info</h4>
             <p><i class="fas fa-map-marker-alt"></i> 29/4/A ,Kottawa Road, Mavittara, Piliyandala, Sri Lanka.</p>
             <p><i class="fas fa-phone-alt"></i> +94 77 745 0234</p>
-            <p><i class="fas fa-envelope"></i> info@ddconstructions.com</p>
+            <p><i class="fas fa-envelope"></i> info@platinuminteriordesigns.com</p>
             <div class="social-links">
-                <a href="https://www.facebook.com/DandDConstructions" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/danddconstructions" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/company/d-and-d-constructions" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.facebook.com/platinuminteriordesigns" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/platinuminteriordesigns" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/platinuminteriordesigns" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
     </div>
     <div class="footer-bottom">
-        &copy; 2023 D & D CONSTRUCTIONS. All Rights Reserved.
+        &copy; 2025 Platinum Interior Designs Pvt Ltd. All Rights Reserved.
     </div>
 </footer>
 
@@ -1061,6 +1516,68 @@
 
     if (aboutImg) {
         aboutImageObserver.observe(aboutImg);
+    }
+
+// FAQ Accordion Functionality
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const faqItem = button.closest('.faq-item');
+            const answer = faqItem.querySelector('.faq-answer');
+            
+            // Toggle active class on the clicked question
+            button.classList.toggle('active');
+
+            // Toggle the max-height of the answer
+            if (button.classList.contains('active')) {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                answer.style.paddingTop = '0'; // Remove top padding if it was 0 for transition
+                answer.style.paddingBottom = '0'; // Remove bottom padding if it was 0 for transition
+                answer.querySelector('p').style.paddingTop = '20px'; // Add back specific padding for content
+                answer.querySelector('p').style.paddingBottom = '20px'; // Add back specific padding for content
+            } else {
+                answer.style.maxHeight = null;
+                answer.style.paddingTop = '0';
+                answer.style.paddingBottom = '0';
+                answer.querySelector('p').style.paddingTop = '0';
+                answer.querySelector('p').style.paddingBottom = '0';
+            }
+
+            // Close other open FAQ items (optional, but good for UX)
+            document.querySelectorAll('.faq-question').forEach(otherButton => {
+                if (otherButton !== button && otherButton.classList.contains('active')) {
+                    otherButton.classList.remove('active');
+                    otherButton.closest('.faq-item').querySelector('.faq-answer').style.maxHeight = null;
+                    otherButton.closest('.faq-item').querySelector('.faq-answer').style.paddingTop = '0';
+                    otherButton.closest('.faq-item').querySelector('.faq-answer').style.paddingBottom = '0';
+                    otherButton.closest('.faq-item').querySelector('.faq-answer').querySelector('p').style.paddingTop = '0';
+                    otherButton.closest('.faq-item').querySelector('.faq-answer').querySelector('p').style.paddingBottom = '0';
+                }
+            });
+        });
+    });
+
+// Sliding text functionality for promo-vision section
+    const slidingTexts = document.querySelectorAll('#promo-vision .sliding-text');
+    let currentSlidingTextIndex = 0;
+
+    function cycleSlidingText() {
+        if (slidingTexts.length === 0) return;
+
+        // Remove active from current text
+        slidingTexts[currentSlidingTextIndex].classList.remove('active');
+
+        // Move to the next text
+        currentSlidingTextIndex = (currentSlidingTextIndex + 1) % slidingTexts.length;
+
+        // Add active to the new current text
+        slidingTexts[currentSlidingTextIndex].classList.add('active');
+    }
+
+    // Start the cycle after a short delay
+    if (slidingTexts.length > 0) {
+        // Ensure the first text is active initially
+        slidingTexts[0].classList.add('active');
+        setInterval(cycleSlidingText, 5000); // Change text every 5 seconds
     }
 
 </script>
