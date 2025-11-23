@@ -96,10 +96,35 @@
         .hero-background {
             position:absolute; top:0; left:0; width:100%; height:100%;
             background-size:cover; background-position:center;
-            transition: background-image 1.5s ease-in-out, opacity 1.5s ease-in-out;
+            transition: opacity 1.5s ease-in-out;
             opacity:0; z-index:1;
         }
         .hero-background.active { opacity:1; }
+
+        .hero-controls {
+            position: absolute;
+            bottom: 30px;
+            z-index: 4;
+            display: flex;
+            gap: 10px;
+        }
+
+        .hero-control-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .hero-control-btn.active,
+        .hero-control-btn:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
 
         .hero-overlay { position:absolute; top:0; left:0; width:100%; height:100%; z-index:2; }
         .hero-content { position:relative; z-index:3; max-width:900px; padding:20px; }
@@ -137,39 +162,40 @@
         /* About */
         #about .container { display:flex; align-items:center; gap:50px; text-align:left; }
        #about .about-img {
-    flex: 1;
-    min-width: 100%; /* Make it take full width */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    border-radius: 8px;
-    overflow: hidden;
-    animation: zoomIn 1s ease-out;
-    position: relative;
-    margin: 0; /* Remove blank space */
-    height: 800px; /* Set a fixed height for the image container */
-}
+            flex: 1;
+            min-width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            animation: zoomIn 1s ease-out;
+            position: relative;
+            margin: 0;
+            height: 800px;
+            background-color: #f0f0f0; /* Placeholder color to remove white space */
+        }
 
-/* New styles for the image slides within about-img */
-.about-image-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    transition: opacity 1.5s ease-in-out; /* Smooth fade transition */
-    opacity: 0;
-    z-index: 1;
-    display: flex; /* Ensure overlay contents are centered */
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+        /* New styles for the image slides within about-img */
+        .about-image-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: opacity 1.5s ease-in-out; /* Smooth fade transition */
+            opacity: 0;
+            z-index: 1;
+            display: flex; /* Ensure overlay contents are centered */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
-.about-image-slide.active {
-    opacity: 1;
-    z-index: 2; /* Bring active slide to front */
-}
+        .about-image-slide.active {
+            opacity: 1;
+            z-index: 2; /* Bring active slide to front */
+        }
 
         .about-words-overlay {
             position: absolute;
@@ -845,11 +871,18 @@
             <a href="#contact" class="btn">Free Consultation</a>
             <a href="#" class="site-visit-button" id="openSiteVisitModal">Book a Site Visit</a>
         </div>
+        <div class="hero-controls" id="hero-controls">
+            <div class="hero-control-btn active" data-index="0"></div>
+            <div class="hero-control-btn" data-index="1"></div>
+            <div class="hero-control-btn" data-index="2"></div>
+            <div class="hero-control-btn" data-index="3"></div>
+            <div class="hero-control-btn" data-index="4"></div>
+        </div>
     </section>
 
     <section id="about" class="container">
         <div class="about-img">
-    <div class="about-image-slide active" style="background-image: url('luxury.jpg');">
+    <div class="about-image-slide active" style="background-image: url('about-luxury.jpg');">
         <div class="about-words-overlay">
             <span class="about-word" data-delay="0">DESIGN</span>
             <span class="about-word" data-delay="200">INNOVATION</span>
@@ -857,7 +890,7 @@
             <span class="about-word" data-delay="600">QUALITY</span>
         </div>
     </div>
-    <div class="about-image-slide" style="background-image: url('luxury2.jpg');">
+    <div class="about-image-slide" style="background-image: url('about-luxury2.jpg');">
         <div class="about-words-overlay">
             <span class="about-word" data-delay="0">EXCELLENCE</span>
             <span class="about-word" data-delay="200">CREATIVITY</span>
@@ -865,7 +898,7 @@
             <span class="about-word" data-delay="600">PERFECTION</span>
         </div>
     </div>
-    <div class="about-image-slide" style="background-image: url('luxury3.jpg');">
+    <div class="about-image-slide" style="background-image: url('about-luxury3.jpg');">
         <div class="about-words-overlay">
             <span class="about-word" data-delay="0">VISION</span>
             <span class="about-word" data-delay="200">PRECISION</span>
@@ -873,7 +906,7 @@
             <span class="about-word" data-delay="600">REFINEMENT</span>
         </div>
     </div>
-    <div class="about-image-slide" style="background-image: url('luxury4.jpg');">
+    <div class="about-image-slide" style="background-image: url('about-luxury4.jpg');">
         <div class="about-words-overlay">
             <span class="about-word" data-delay="0">ARTISTRY</span>
             <span class="about-word" data-delay="200">INSPIRATION</span>
@@ -881,7 +914,7 @@
             <span class="about-word" data-delay="600">PRESTIGE</span>
         </div>
     </div>
-    <div class="about-image-slide" style="background-image: url('luxury5.jpg');">
+    <div class="about-image-slide" style="background-image: url('about-luxury5.jpg');">
         <div class="about-words-overlay">
             <span class="about-word" data-delay="0">HARMONY</span>
             <span class="about-word" data-delay="200">EXQUISITE</span>
@@ -1334,15 +1367,24 @@
         if (window.scrollY > 50) header.classList.add('scrolled'); else header.classList.remove('scrolled');
     });
 
-    // Hero slideshow
+    // Hero slideshow - MODIFIED FOR MANUAL CONTROL
     const heroBackgrounds = document.querySelectorAll('.hero-background');
+    const heroControlBtns = document.querySelectorAll('.hero-control-btn');
     let currentHeroIndex = 0;
-    function changeHeroBackground() {
+
+    function showHeroSlide(index) {
         heroBackgrounds[currentHeroIndex].classList.remove('active');
-        currentHeroIndex = (currentHeroIndex + 1) % heroBackgrounds.length;
+        heroControlBtns[currentHeroIndex].classList.remove('active');
+        currentHeroIndex = index;
         heroBackgrounds[currentHeroIndex].classList.add('active');
+        heroControlBtns[currentHeroIndex].classList.add('active');
     }
-    setInterval(changeHeroBackground, 5000);
+
+    heroControlBtns.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+            showHeroSlide(index);
+        });
+    });
 
     // Mobile nav toggle
     const hamburger = document.getElementById('hamburger-menu');
@@ -1540,7 +1582,7 @@
     // initialize testimonial position (in case page starts not at 0)
     updateTestimonialPosition();
 
-    // About Us Images Slideshow & Words Animation
+    // About Us Images Slideshow & Words Animation - MODIFIED FOR AUTO-CHANGE
     const aboutImageSlides = document.querySelectorAll('.about-image-slide');
     let currentAboutImageIndex = 0;
     let aboutSlideshowInterval;
@@ -1578,13 +1620,17 @@
             if (entry.isIntersecting) {
                 // When about section enters view, start slideshow and words animation
                 if (aboutImageSlides.length > 0) {
-                    aboutImageSlides[currentAboutImageIndex].classList.add('active'); // Ensure first slide is active initially
-                    activateAboutWords(aboutImageSlides[currentAboutImageIndex]);
-                    aboutSlideshowInterval = setInterval(changeAboutImageSlide, 6000); // Change image every 6 seconds
+                    // Only start if not already running (prevents multiple intervals)
+                    if (!aboutSlideshowInterval) {
+                        aboutImageSlides[currentAboutImageIndex].classList.add('active'); // Ensure first slide is active initially
+                        activateAboutWords(aboutImageSlides[currentAboutImageIndex]);
+                        aboutSlideshowInterval = setInterval(changeAboutImageSlide, 6000); // Change image every 6 seconds
+                    }
                 }
             } else {
                 // When about section leaves view, stop slideshow and hide words
                 clearInterval(aboutSlideshowInterval);
+                aboutSlideshowInterval = null; // Reset the interval reference
                 aboutImageSlides.forEach(slide => slide.classList.remove('active'));
                 document.querySelectorAll('.about-word').forEach(word => word.classList.remove('visible'));
                 currentAboutImageIndex = 0; // Reset index to start from first image next time
