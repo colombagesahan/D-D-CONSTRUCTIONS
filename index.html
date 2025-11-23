@@ -7,8 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color:  #FF6600; /* orange */
-            --secondary-color: #2C3E50; /* Deep Blue/Charcoal */
+            --primary-color: #E9762F; 
+            --secondary-color: #1A3E5D; 
             --text-color-light: #F0F0F0;
             --text-color-dark: #333333;
             --bg-dark: #1A1A1A;
@@ -101,13 +101,13 @@
         }
         .hero-background.active { opacity:1; }
 
-        .hero-overlay { position:absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); z-index:2; }
+        .hero-overlay { position:absolute; top:0; left:0; width:100%; height:100%; z-index:2; }
         .hero-content { position:relative; z-index:3; max-width:900px; padding:20px; }
         .hero h1 { font-size:4.5em; margin-bottom:20px; color:var(--text-color-light); text-shadow:2px 2px 8px rgba(0,0,0,0.7); animation:fadeInUp 1s ease-out; }
         .hero p { font-size:1.6em; margin-bottom:40px; color:var(--text-color-light); text-shadow:1px 1px 6px rgba(0,0,0,0.6); animation:fadeInUp 1.2s ease-out; }
 
         .btn {
-            display:inline-block; background-color:var(--primary-color); color:var(--bg-dark);
+            display:inline-block; background-color:var(--primary-color); color:var(--text-color-light);
             padding:15px 35px; text-decoration:none; border-radius:5px; font-weight:700; font-size:1.1em;
             transition:background-color 0.3s ease, transform 0.2s ease; box-shadow:0 4px 15px rgba(0,0,0,0.3);
             animation: zoomIn 1.5s ease-out;
@@ -136,18 +136,40 @@
 
         /* About */
         #about .container { display:flex; align-items:center; gap:50px; text-align:left; }
-        #about .about-img {
-            flex: 1;
-            min-width: 100%; /* Make it take full width */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            border-radius: 8px;
-            overflow: hidden;
-            animation: zoomIn 1s ease-out;
-            position: relative;
-            margin: 0; /* Remove blank space */
-        }
-        #about .about-img img { width:100%; height:auto; display:block; transition:transform 0.5s ease; }
-        #about .about-img img:hover { transform:scale(1.05); }
+       #about .about-img {
+    flex: 1;
+    min-width: 100%; /* Make it take full width */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    animation: zoomIn 1s ease-out;
+    position: relative;
+    margin: 0; /* Remove blank space */
+    height: 450px; /* Set a fixed height for the image container */
+}
+
+/* New styles for the image slides within about-img */
+.about-image-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 1.5s ease-in-out; /* Smooth fade transition */
+    opacity: 0;
+    z-index: 1;
+    display: flex; /* Ensure overlay contents are centered */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-image-slide.active {
+    opacity: 1;
+    z-index: 2; /* Bring active slide to front */
+}
 
         .about-words-overlay {
             position: absolute;
@@ -155,7 +177,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -412,8 +433,8 @@
         }
 
 .promo {
-    background-color: #B5A07F;
-    color: #333333;
+    background-color:#FFFFFF;
+    color:  #1A3E5D;
     letter-spacing: 0.4px;
     margin: 1rem 0;
     padding: 0.6rem 1rem;
@@ -680,7 +701,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5); /* Stronger overlay for text readability */
             z-index: 2;
         }
 
@@ -717,7 +737,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 2.2em; /* Prominent text */
             font-weight: 700;
-            color: var(--primary-color); /* Gold text */
+            color: var(--text-color-light); 
             margin: 0;
             position: absolute;
             top: 0;
@@ -739,7 +759,7 @@
 
         .promo-btn {
             background-color: var(--primary-color);
-            color: var(--bg-dark);
+            color: var(--text-color-light);
         }
 
         .promo-btn:hover {
@@ -822,21 +842,54 @@
 		    <div class="promo">OVER 35 YEARS OF EXPERTISE</div>
             <h1>Crafting Exceptional Interiors</h1>
             <p>Where Luxury Meets Lifestyle – Bespoke Designs for Discerning Clients.</p>
-            <a href="#contact" class="btn">Get a Free Consultation</a>
+            <a href="#contact" class="btn">Free Consultation</a>
             <a href="#" class="site-visit-button" id="openSiteVisitModal">Book a Site Visit</a>
         </div>
     </section>
 
     <section id="about" class="container">
         <div class="about-img">
-            <img src="about-luxury.jpg" alt="Luxury Interior Design Example">
-            <div class="about-words-overlay">
-                <span class="about-word" data-delay="0">DESIGN</span>
-                <span class="about-word" data-delay="200">INNOVATION</span>
-                <span class="about-word" data-delay="400">LUXURY</span>
-                <span class="about-word" data-delay="600">QUALITY</span>
-            </div>
+    <div class="about-image-slide active" style="background-image: url('about-luxury.jpg');">
+        <div class="about-words-overlay">
+            <span class="about-word" data-delay="0">DESIGN</span>
+            <span class="about-word" data-delay="200">INNOVATION</span>
+            <span class="about-word" data-delay="400">LUXURY</span>
+            <span class="about-word" data-delay="600">QUALITY</span>
         </div>
+    </div>
+    <div class="about-image-slide" style="background-image: url('about-luxury2.jpg');">
+        <div class="about-words-overlay">
+            <span class="about-word" data-delay="0">EXCELLENCE</span>
+            <span class="about-word" data-delay="200">CREATIVITY</span>
+            <span class="about-word" data-delay="400">ELEGANCE</span>
+            <span class="about-word" data-delay="600">PERFECTION</span>
+        </div>
+    </div>
+    <div class="about-image-slide" style="background-image: url('about-luxury3.jpg');">
+        <div class="about-words-overlay">
+            <span class="about-word" data-delay="0">VISION</span>
+            <span class="about-word" data-delay="200">PRECISION</span>
+            <span class="about-word" data-delay="400">SOPHISTICATION</span>
+            <span class="about-word" data-delay="600">REFINEMENT</span>
+        </div>
+    </div>
+    <div class="about-image-slide" style="background-image: url('about-luxury4.jpg');">
+        <div class="about-words-overlay">
+            <span class="about-word" data-delay="0">ARTISTRY</span>
+            <span class="about-word" data-delay="200">INSPIRATION</span>
+            <span class="about-word" data-delay="400">DISTINCTION</span>
+            <span class="about-word" data-delay="600">PRESTIGE</span>
+        </div>
+    </div>
+    <div class="about-image-slide" style="background-image: url('about-luxury5.jpg');">
+        <div class="about-words-overlay">
+            <span class="about-word" data-delay="0">HARMONY</span>
+            <span class="about-word" data-delay="200">EXQUISITE</span>
+            <span class="about-word" data-delay="400">BESPOKE</span>
+            <span class="about-word" data-delay="600">ICONIC</span>
+        </div>
+    </div>
+</div>
         <div class="about-content">
             <h2 class="section-title">About Platinum Interior Designs Pvt Ltd</h2>
             <p>At Platinum Interior Designs Pvt Ltd, we believe that true luxury is found in meticulous detail, unparalleled craftsmanship, and designs that perfectly reflect the unique aspirations of our clients. With over 35 years of expertise, we specialize in creating opulent and functional spaces that redefine modern living and commercial elegance.</p>
@@ -1487,35 +1540,64 @@
     // initialize testimonial position (in case page starts not at 0)
     updateTestimonialPosition();
 
-    // Intersection Observer for words on about-luxury.jpg
-    const aboutImg = document.querySelector('#about .about-img');
-    const aboutWords = document.querySelectorAll('.about-word');
+    // About Us Images Slideshow & Words Animation
+    const aboutImageSlides = document.querySelectorAll('.about-image-slide');
+    let currentAboutImageIndex = 0;
+    let aboutSlideshowInterval;
 
-    const aboutImageObserver = new IntersectionObserver((entries) => {
+    function activateAboutWords(slideElement) {
+        const words = slideElement.querySelectorAll('.about-word');
+        words.forEach(word => word.classList.remove('visible')); // Hide all first
+        words.forEach((word) => {
+            setTimeout(() => {
+                word.classList.add('visible');
+            }, parseInt(word.dataset.delay));
+        });
+    }
+
+    function changeAboutImageSlide() {
+        if (aboutImageSlides.length === 0) return;
+
+        // Deactivate current slide
+        aboutImageSlides[currentAboutImageIndex].classList.remove('active');
+        const currentWords = aboutImageSlides[currentAboutImageIndex].querySelectorAll('.about-word');
+        currentWords.forEach(word => word.classList.remove('visible')); // Hide words of outgoing slide
+
+        // Move to next slide
+        currentAboutImageIndex = (currentAboutImageIndex + 1) % aboutImageSlides.length;
+
+        // Activate new slide
+        aboutImageSlides[currentAboutImageIndex].classList.add('active');
+        activateAboutWords(aboutImageSlides[currentAboutImageIndex]); // Animate words for incoming slide
+    }
+
+    // Intersection Observer for the About Us image section
+    const aboutSection = document.getElementById('about');
+    const aboutSectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                aboutWords.forEach((word, index) => {
-                    setTimeout(() => {
-                        word.classList.add('visible');
-                    }, word.dataset.delay);
-                });
-                // No need to unobserve if you want the animation to re-play on scroll up/down
-                // aboutImageObserver.unobserve(entry.target);
+                // When about section enters view, start slideshow and words animation
+                if (aboutImageSlides.length > 0) {
+                    aboutImageSlides[currentAboutImageIndex].classList.add('active'); // Ensure first slide is active initially
+                    activateAboutWords(aboutImageSlides[currentAboutImageIndex]);
+                    aboutSlideshowInterval = setInterval(changeAboutImageSlide, 6000); // Change image every 6 seconds
+                }
             } else {
-                // Optionally remove 'visible' class if it scrolls out of view
-                aboutWords.forEach((word) => {
-                    word.classList.remove('visible');
-                });
+                // When about section leaves view, stop slideshow and hide words
+                clearInterval(aboutSlideshowInterval);
+                aboutImageSlides.forEach(slide => slide.classList.remove('active'));
+                document.querySelectorAll('.about-word').forEach(word => word.classList.remove('visible'));
+                currentAboutImageIndex = 0; // Reset index to start from first image next time
             }
         });
     }, {
         root: null,
         rootMargin: '0px',
-        threshold: 0.5 // Adjust as needed, 0.5 means when 50% of the image is visible
+        threshold: 0.2 // Trigger when 20% of the section is visible
     });
 
-    if (aboutImg) {
-        aboutImageObserver.observe(aboutImg);
+    if (aboutSection) {
+        aboutSectionObserver.observe(aboutSection);
     }
 
 // FAQ Accordion Functionality
@@ -1583,4 +1665,4 @@
 </script>
 </body>
 </html>
-
+Observer
